@@ -1,0 +1,9 @@
+image: node:18
+
+pipelines:
+  default:
+    - step:
+        name: Build Step
+        script:
+          - echo "Running Bitbucket Pipeline"
+          - node -v
