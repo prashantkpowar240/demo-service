@@ -1,0 +1,21 @@
+image: node:18
+
+pipelines:
+  default:
+    - step:
+        name: Build Step
+        script:
+          - echo "Running Bitbucket Pipeline"
+          - node -v
+
+    - step:
+        name: Sync to GitHub
+        image: alpine/git
+        script:
+          - echo "Syncing to GitHub..."
+
+          # Add GitHub remote (ignore if already exists)
+          - git remote add github https://$GITHUB_TOKEN@github.com/prashantkpowar240/demo-service.git || true
+
+          # Push everything (branches + tags)
+          - git push --mirror github
